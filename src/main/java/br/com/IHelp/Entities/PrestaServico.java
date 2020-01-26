@@ -38,9 +38,20 @@ public class PrestaServico implements Serializable{
 	@Column(name = "estado_presta_servico")
 	private String estado;
 	
+	@Column(name = "cidade_presta_servico")
+	private String cidade;
+	
 	@Column(name = "email_presta_servico")
 	private String email;
 	
 	@Column(name = "data_nascimento_presta_servico")
 	private String dataNascimento;
+	
+	@Column(name = "endereco_presta_servico")
+	private String endereco;
+	
+	@Column(name = "cep_presta_servico")
+	private String cep;
+	
+	private Login login;
 }

@@ -30,14 +30,11 @@ public class Usuario implements Serializable{
 	@Column(name = "id_usuario")
 	private Long id;
 	
-	@Column(name = "nome_usuario")
-	private String nome;
-	
 	@Column(name = "cpf_usuario")
 	private String cpf;
 	
-	@Column(name = "telefone_usuario")
-	private String telefone;
+	@Column(name = "endereco_usuario")
+	private String endereco;
 	
 	@Column(name = "email_usuario")
 	private String email;
@@ -47,4 +44,12 @@ public class Usuario implements Serializable{
 	
 	@Column(name = "estado_usuario")
 	private String estado;	
+	
+	@Column(name = "cidade_usuario")
+	private String cidade;	
+	
+	@Column(name = "cep_usuario")
+	private String cep;
+	
+	private Login login;
 }
