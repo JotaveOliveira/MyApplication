@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -53,5 +54,6 @@ public class PrestaServico implements Serializable{
 	@Column(name = "cep_presta_servico")
 	private String cep;
 	
+	@OneToOne
 	private Login login;
 }
