@@ -31,37 +31,52 @@ public class UsuarioService {
 		return usuarioRepository.findAll();
 	}
 	
-	public Usuario inserirUsuario(Usuario usuario) {
+	public Usuario inserirUsuario(Usuario usuario) throws Exception {
 		
-		Boolean estado = Estados.servicoDisponivel(usuario.getEstado().toString());
+		Boolean estado = Estados.servicoDisponivel(usuario.getEstado());
 		String estadoDoServico = EstadoServico.disponibilidadeDoServico(estado);
 		Boolean verificaEmail = verificaSeExisteEmail(usuario);
+		Boolean verificaCpf = verificaSeExisteCpf(usuario);
 		
-		if(estadoDoServico.equals(DISPONIVEL) && verificaEmail.equals(false)) {
-			return usuarioRepository.save(usuario);
+		if(estadoDoServico.equals(DISPONIVEL)) {
+			if(verificaCpf.equals(true)&& verificaEmail.equals(true)) {
+				return usuarioRepository.save(usuario);
+			}else{
+				throw new Exception("Dado já existente");
+			}
 		}else {
-			return null;
+			throw new Exception("Serviço Indisponivel nesse estado!");
 		}
 	}
 	
-	public List<Usuario> listaEmail(){
-	    TypedQuery<Usuario> query = entityManager.createQuery("select email_usuario from usuario", Usuario.class);
+	
+	public List<String> listaEmail(){
+	    TypedQuery<String> query = entityManager.createQuery("select email from Usuario", String.class);
 	    return query.getResultList();
 	  }
 	
-	public List<Usuario> listaCpf(){
-	    TypedQuery<Usuario> query = entityManager.createQuery("select cpf_usuario from usuario", Usuario.class);
+	public List<String> listaCpf(){
+	    TypedQuery<String> query = entityManager.createQuery("select cpf from Usuario", String.class);
 	    return query.getResultList();
 	  }
 	
 	public Boolean verificaSeExisteEmail(Usuario usuario) {
 		String email = listaEmail().stream()
-										 .filter(p -> p.getEmail().toString().trim().toLowerCase().equals(usuario.getEmail().toString().trim().toLowerCase()))
-										 .map(p -> p.getEmail().toString())
-										 .collect(Collectors.joining("* "));
+											.filter(p -> p.toLowerCase().equals(usuario.getEmail().toLowerCase()))
+											.collect(Collectors.joining(". "));
 		
-		Boolean exist = email.isEmpty() ? false : true;
+		Boolean exist = email.isEmpty() ? true : false;
 		
+		return exist;
+	}
+	
+	public Boolean verificaSeExisteCpf(Usuario usuario) {
+		String email = listaCpf().stream()
+										 .filter(p -> p.toLowerCase().equals(usuario.getCpf().toLowerCase()))
+										 .collect(Collectors.joining(". "));
+
+		Boolean exist = email.isEmpty() ? true : false;
+
 		return exist;
 	}
 }

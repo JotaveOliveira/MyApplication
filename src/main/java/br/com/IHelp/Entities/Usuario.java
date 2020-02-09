@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -52,6 +51,6 @@ public class Usuario implements Serializable{
 	@Column(name = "cep_usuario")
 	private String cep;
 	
-	@OneToOne
-	private Login login;
+	@Column(name = "senha")
+	private String senha;	
 }

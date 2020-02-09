@@ -22,7 +22,7 @@ public enum Estados {
 		public static Boolean servicoDisponivel(String estado) {
 			
 			List<Estados> states = estados.stream()
-										  .filter(state -> state.getState().trim().equals(estado.trim().toUpperCase()))
+										  .filter(state -> state.getState().trim().toUpperCase().equals(estado.trim().toUpperCase()))
 										  .collect(Collectors.toList());
 			
 			Boolean resultado = states.isEmpty() ? false : true;

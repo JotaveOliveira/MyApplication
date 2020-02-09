@@ -31,38 +31,53 @@ public class PrestaServicoService {
 		return prestaServicoRepository.findAll();
 	}
 	
-	public PrestaServico inserirUsuario(PrestaServico prestaServico) {
+	public PrestaServico inserirUsuario(PrestaServico prestaServico) throws Exception {
 		
 		Boolean estado = Estados.servicoDisponivel(prestaServico.getEstado().toString());
 		String estadoDoServico = EstadoServico.disponibilidadeDoServico(estado);
 		Boolean verificaEmail = verificaSeExisteEmail(prestaServico);
+		Boolean verificaCnpj = verificaSeExisteCnpj(prestaServico);
 		
-		if(estadoDoServico.equals(DISPONIVEL) && verificaEmail.equals(false)) {
-			return prestaServicoRepository.save(prestaServico);
+		if(estadoDoServico.equals(DISPONIVEL)) {
+			if(verificaCnpj.equals(true)&& verificaEmail.equals(true)) {
+				return prestaServicoRepository.save(prestaServico);
+			}else{
+				throw new Exception("Dado já existente");
+			}
 		}else {
-			return null;
+			throw new Exception("Serviço Indisponivel nesse estado!");
 		}
 	}
 	
-	public List<PrestaServico> listaEmail(){
-	    TypedQuery<PrestaServico> query = entityManager.createQuery("select email_presta_servico from presta_servico", PrestaServico.class);
+	public List<String> listaEmail(){
+	    TypedQuery<String> query = entityManager.createQuery("select email from PrestaServico", String.class);
 	    return query.getResultList();
 	  }
 	
-	public List<PrestaServico> listaCnpj(){
-	    TypedQuery<PrestaServico> query = entityManager.createQuery("select cnpj_presta_servico from presta_servico", PrestaServico.class);
+	public List<String> listaCnpj(){
+	    TypedQuery<String> query = entityManager.createQuery("select cnpj from PrestaServico", String.class);
 	    return query.getResultList();
 	  }
 	
 	public Boolean verificaSeExisteEmail(PrestaServico prestaServico) {
 		String email = listaEmail().stream()
-										 .filter(p -> p.getEmail().toString().trim().toLowerCase().equals(prestaServico.getEmail().toString().trim().toLowerCase()))
-										 .map(p -> p.getEmail().toString())
-										 .collect(Collectors.joining("* "));
+				 							.filter(p -> p.toLowerCase().equals(prestaServico.getEmail().toLowerCase()))
+				 							.collect(Collectors.joining(". "));
 		
-		Boolean exist = email.isEmpty() ? false : true;
+		Boolean exist = email.isEmpty() ? true : false;
 		
 		return exist;
 	}
+	
+	public Boolean verificaSeExisteCnpj(PrestaServico prestaServico) {
+		String email = listaCnpj().stream()
+										 .filter(p -> p.toLowerCase().equals(prestaServico.getCnpj().toLowerCase()))
+										 .collect(Collectors.joining(". "));
+
+		Boolean exist = email.isEmpty() ? true : false;
+		
+		return exist;
+	}
+
 }
 
