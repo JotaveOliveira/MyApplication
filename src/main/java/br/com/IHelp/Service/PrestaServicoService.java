@@ -14,6 +14,7 @@ import br.com.IHelp.Entities.PrestaServico;
 import br.com.IHelp.Repository.PrestaServicoRepository;
 import br.com.IHelp.Types.EstadoServico;
 import br.com.IHelp.Types.Estados;
+import br.com.IHelp.Utils.SenhaUtils;
 
 @Service
 public class PrestaServicoService {
@@ -23,6 +24,9 @@ public class PrestaServicoService {
 	
 	@Autowired
 	private PrestaServicoRepository prestaServicoRepository;
+	
+	@Autowired
+	private SenhaUtils senhaUtils;
 	
 	private static final String DISPONIVEL = "DISPONIVEL";
 	
@@ -37,11 +41,12 @@ public class PrestaServicoService {
 		String estadoDoServico = EstadoServico.disponibilidadeDoServico(estado);
 		Boolean verificaEmail = verificaSeExisteEmail(prestaServico);
 		Boolean verificaCnpj = verificaSeExisteCnpj(prestaServico);
+		prestaServico.setSenha(senhaUtils.gerarBCrypt(prestaServico.getSenha()));
 		
 		if(estadoDoServico.equals(DISPONIVEL)) {
-			if(verificaCnpj.equals(true)&& verificaEmail.equals(true)) {
+			if(verificaCnpj.equals(true)&& verificaEmail.equals(true)) 
 				return prestaServicoRepository.save(prestaServico);
-			}else{
+			else{
 				throw new Exception("Dado já existente");
 			}
 		}else {

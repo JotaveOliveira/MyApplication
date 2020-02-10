@@ -14,6 +14,7 @@ import br.com.IHelp.Entities.Usuario;
 import br.com.IHelp.Repository.UsuarioRepository;
 import br.com.IHelp.Types.EstadoServico;
 import br.com.IHelp.Types.Estados;
+import br.com.IHelp.Utils.SenhaUtils;
 
 @Service
 public class UsuarioService {
@@ -23,6 +24,9 @@ public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private SenhaUtils senhaUtils;
 	
 	private static final String DISPONIVEL = "DISPONIVEL";
 	
@@ -37,6 +41,8 @@ public class UsuarioService {
 		String estadoDoServico = EstadoServico.disponibilidadeDoServico(estado);
 		Boolean verificaEmail = verificaSeExisteEmail(usuario);
 		Boolean verificaCpf = verificaSeExisteCpf(usuario);
+		usuario.setSenha(senhaUtils.gerarBCrypt(usuario.getSenha()));
+		
 		
 		if(estadoDoServico.equals(DISPONIVEL)) {
 			if(verificaCpf.equals(true)&& verificaEmail.equals(true)) {
