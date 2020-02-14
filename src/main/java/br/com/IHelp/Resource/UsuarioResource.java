@@ -31,7 +31,7 @@ public class UsuarioResource {
 	}
 	
 	@CrossOrigin
-	@PostMapping(value = "cadastraUsuario")
+	@PostMapping(value = "/cadastraUsuario")
 	public ResponseEntity<Usuario> cadastraUsuario(@RequestBody Usuario usuario) throws Exception{
 		usuario = usuarioService.inserirUsuario(usuario);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(usuario.getId()).toUri();
