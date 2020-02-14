@@ -24,7 +24,7 @@ public class PrestaServicoResource {
 	private PrestaServicoService prestaServicoService;
 
 	@CrossOrigin
-	@GetMapping
+	@GetMapping(value = "/prestadores")
 	public ResponseEntity<List<PrestaServico>> pegaTudo() {
 
 		List<PrestaServico> listaPrestaServico = prestaServicoService.pegaPrestadoresServico();
