@@ -24,9 +24,8 @@ public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
-	@Autowired
-	private SenhaUtils senhaUtils;
+
+	private SenhaUtils senhaUtils = new SenhaUtils();
 	
 	private static final String DISPONIVEL = "DISPONIVEL";
 	
@@ -42,7 +41,6 @@ public class UsuarioService {
 		Boolean verificaEmail = verificaSeExisteEmail(usuario);
 		Boolean verificaCpf = verificaSeExisteCpf(usuario);
 		usuario.setSenha(senhaUtils.gerarBCrypt(usuario.getSenha()));
-		
 		
 		if(estadoDoServico.equals(DISPONIVEL)) {
 			if(verificaCpf.equals(true)&& verificaEmail.equals(true)) {

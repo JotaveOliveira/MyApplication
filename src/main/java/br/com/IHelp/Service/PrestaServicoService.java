@@ -25,8 +25,7 @@ public class PrestaServicoService {
 	@Autowired
 	private PrestaServicoRepository prestaServicoRepository;
 	
-	@Autowired
-	private SenhaUtils senhaUtils;
+	private SenhaUtils senhaUtils = new SenhaUtils();
 	
 	private static final String DISPONIVEL = "DISPONIVEL";
 	
