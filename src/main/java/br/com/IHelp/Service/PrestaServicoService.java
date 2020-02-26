@@ -16,6 +16,11 @@ import br.com.IHelp.Types.EstadoServico;
 import br.com.IHelp.Types.Estados;
 import br.com.IHelp.Utils.SenhaUtils;
 
+/**
+ * 
+ * @author jvitoroliveira
+ * @data 15/01/2020
+ */
 @Service
 public class PrestaServicoService {
 
@@ -29,10 +34,23 @@ public class PrestaServicoService {
 	
 	private static final String DISPONIVEL = "DISPONIVEL";
 	
+	/**
+	 * Método responsavel por coletar todos os prestadores de serviço
+	 * 
+	 * @return
+	 */
 	public List<PrestaServico> pegaPrestadoresServico(){
 		
 		return prestaServicoRepository.findAll();
 	}
+	
+	/**
+	 *Método responsave por fazer todas as validações necessárias para inserir um usuário no banco de dados
+	 *
+	 * @param prestaServico
+	 * @return
+	 * @throws Exception
+	 */
 	
 	public PrestaServico inserirUsuario(PrestaServico prestaServico) throws Exception {
 		
@@ -53,16 +71,32 @@ public class PrestaServicoService {
 		}
 	}
 	
+	/**
+	 * Método responsavel por realizar a busca de email no banco de dados
+	 * 
+	 * @return
+	 */
 	public List<String> listaEmail(){
 	    TypedQuery<String> query = entityManager.createQuery("select email from PrestaServico", String.class);
 	    return query.getResultList();
 	  }
 	
+	/**
+	 * Método responsavel por realizar a busca de cnpj no banco de dados
+	 * 
+	 * @return
+	 */
 	public List<String> listaCnpj(){
 	    TypedQuery<String> query = entityManager.createQuery("select cnpj from PrestaServico", String.class);
 	    return query.getResultList();
 	  }
 	
+	/**
+	 * Método para fazer a verificação dentro do banco de dados se já existe uma pessoa cadastrada com o email inserido 
+	 * pelo prestador de serviço
+	 * 
+	 * @return Boolean
+	 */
 	public Boolean verificaSeExisteEmail(PrestaServico prestaServico) {
 		String email = listaEmail().stream()
 				 							.filter(p -> p.toLowerCase().equals(prestaServico.getEmail().toLowerCase()))
@@ -73,6 +107,12 @@ public class PrestaServicoService {
 		return exist;
 	}
 	
+	/**
+	 * Método para fazer a verificação dentro do banco de dados se já existe uma pessoa cadastrada com o cnpj inserido 
+	 * pelo prestador de serviço
+	 * 
+	 * @return Boolean
+	 */
 	public Boolean verificaSeExisteCnpj(PrestaServico prestaServico) {
 		String email = listaCnpj().stream()
 										 .filter(p -> p.toLowerCase().equals(prestaServico.getCnpj().toLowerCase()))

@@ -8,6 +8,11 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+/**
+ * 
+ * @author jvitoroliveira
+ * @data 23/01/2020
+ */
 @Getter
 @AllArgsConstructor(access=AccessLevel.PRIVATE)
 public enum Estados {
@@ -19,6 +24,12 @@ public enum Estados {
 		
 		private static List<Estados> estados = Arrays.asList(Estados.values());
 		
+		/**
+		 * Este método serve para verificar se o serviço está disponivel no estado ou não , verificando o estado está dentro do enum
+		 * 
+		 * @param estado
+		 * @return
+		 */
 		public static Boolean servicoDisponivel(String estado) {
 			
 			List<Estados> states = estados.stream()

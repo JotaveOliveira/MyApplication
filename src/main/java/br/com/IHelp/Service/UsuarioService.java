@@ -16,6 +16,11 @@ import br.com.IHelp.Types.EstadoServico;
 import br.com.IHelp.Types.Estados;
 import br.com.IHelp.Utils.SenhaUtils;
 
+/**
+ * 
+ * @author jvitoroliveira
+ * @data 26/02/2020
+ */
 @Service
 public class UsuarioService {
 	
@@ -29,11 +34,22 @@ public class UsuarioService {
 	
 	private static final String DISPONIVEL = "DISPONIVEL";
 	
+	/**
+	 * Método responsavel por pegar todos os usuarios do banco de dados
+	 * @return
+	 */
 	public List<Usuario> pegaUsuarios(){
 		
 		return usuarioRepository.findAll();
 	}
 	
+	/**
+	 * Método responsável por aplicar todas as regras de negócio para inserir um usuário no banco de dados
+	 * 
+	 * @param usuario
+	 * @return
+	 * @throws Exception
+	 */
 	public Usuario inserirUsuario(Usuario usuario) throws Exception {
 		
 		Boolean estado = Estados.servicoDisponivel(usuario.getEstado());
@@ -53,17 +69,32 @@ public class UsuarioService {
 		}
 	}
 	
-	
+	/**
+	 * Método responsavel por buscar todos os emails dentro do banco de dados
+	 * 
+	 * @return
+	 */
 	public List<String> listaEmail(){
 	    TypedQuery<String> query = entityManager.createQuery("select email from Usuario", String.class);
 	    return query.getResultList();
 	  }
 	
+	/**
+	 * Método responsavel por buscar todos cpf dentro do banco de dados
+	 * 
+	 * @return
+	 */
 	public List<String> listaCpf(){
 	    TypedQuery<String> query = entityManager.createQuery("select cpf from Usuario", String.class);
 	    return query.getResultList();
 	  }
 	
+	/**
+	 * Método responsavel por verificar se o email do usuario já existe dentro do banco de dados
+	 * 
+	 * @param usuario
+	 * @return
+	 */
 	public Boolean verificaSeExisteEmail(Usuario usuario) {
 		String email = listaEmail().stream()
 											.filter(p -> p.toLowerCase().equals(usuario.getEmail().toLowerCase()))
@@ -74,6 +105,12 @@ public class UsuarioService {
 		return exist;
 	}
 	
+	/**
+	 * Método responsavel por verificar se existe cpf do usuario dentro do banco de dados 
+	 * 
+	 * @param usuario
+	 * @return
+	 */
 	public Boolean verificaSeExisteCpf(Usuario usuario) {
 		String email = listaCpf().stream()
 										 .filter(p -> p.toLowerCase().equals(usuario.getCpf().toLowerCase()))

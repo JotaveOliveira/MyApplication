@@ -2,6 +2,11 @@ package br.com.IHelp.Utils;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+/**
+ * 
+ * @author jvitoroliveira
+ * @data 16/02/2020
+ */
 public class SenhaUtils {
 
 	/**

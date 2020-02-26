@@ -15,12 +15,21 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.IHelp.Entities.Usuario;
 import br.com.IHelp.Service.UsuarioService;
 
+/**
+ * 
+ * @author jvitoroliveira
+ * @data 26/02/2020
+ */
 @RestController
 public class UsuarioResource {
 
 	@Autowired
 	private UsuarioService usuarioService;
 	
+	/**
+	 * Método responsavel por pegar todos os usuarios dentro do banco de dados na rota /usuarios
+	 * @return
+	 */
 	@CrossOrigin
 	@GetMapping(value = "/usuarios")
 	public ResponseEntity<List<Usuario>> pegaTudo() {
@@ -29,7 +38,13 @@ public class UsuarioResource {
 		
 		return ResponseEntity.ok().body(listaUsuario);
 	}
-	
+	/**
+	 * Método responsavel por cadastrar usuarios dentro do banco de dados na rota /cadastraUsuario
+	 * 
+	 * @param usuario
+	 * @return
+	 * @throws Exception
+	 */
 	@CrossOrigin
 	@PostMapping(value = "/cadastraUsuario")
 	public ResponseEntity<Usuario> cadastraUsuario(@RequestBody Usuario usuario) throws Exception{
