@@ -54,4 +54,12 @@ public class PrestaServicoResource {
 		return ResponseEntity.created(uri).body(prestaServico);
 		
 	}
+	
+	@CrossOrigin
+	@GetMapping(value = "/loginPrestador")
+	public Boolean login(String email, String senha) {
+		
+		return prestaServicoService.loginPrestador(email , senha);
+		
+	}
 }
