@@ -54,7 +54,12 @@ public class PrestaServicoResource {
 		return ResponseEntity.created(uri).body(prestaServico);
 		
 	}
-	
+	/**
+	 * Método que recebe a senha e o email do prestador de serviço e realizar toda lógica para fazer login
+	 * @param email
+	 * @param senha
+	 * @return
+	 */
 	@CrossOrigin
 	@GetMapping(value = "/loginPrestador")
 	public Boolean login(String email, String senha) {

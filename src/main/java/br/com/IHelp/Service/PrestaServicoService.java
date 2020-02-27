@@ -97,7 +97,8 @@ public class PrestaServicoService {
 	 * @return
 	 */
 	public List<String> listaSenha(String email){
-	    TypedQuery<String> query = entityManager.createQuery("select senha from PrestaServico where email = '" + email.toString() + "'"  , String.class);
+	    TypedQuery<String> query = entityManager.createQuery("select senha from PrestaServico where email = :email" , String.class);
+	    query.setParameter("email", email);
 	    return query.getResultList();
 	  }
 	
@@ -145,7 +146,7 @@ public class PrestaServicoService {
 		
 		Boolean senhaVerificada = senhaUtils.senhaValida(senha, senhaCriptografada);
 	
-		if(senhaVerificada == true ) 
+		if(senhaVerificada.equals(true)) 
 			  	return true;
 		
 		return false;

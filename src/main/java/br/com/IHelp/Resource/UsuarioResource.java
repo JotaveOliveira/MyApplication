@@ -53,4 +53,17 @@ public class UsuarioResource {
 		return ResponseEntity.created(uri).body(usuario);
 		
 	}
+	
+	/**
+	 * Método que recebe a senha e o email do usuario e realizar toda lógica para fazer login
+	 * @param email
+	 * @param senha
+	 * @return
+	 */
+	@CrossOrigin
+	@GetMapping(value = "/loginUsuario")
+	public Boolean login(String email, String senha) {
+		
+		return usuarioService.loginUsuario(email , senha);
+	}
 }

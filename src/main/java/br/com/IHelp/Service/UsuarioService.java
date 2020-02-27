@@ -90,6 +90,17 @@ public class UsuarioService {
 	  }
 	
 	/**
+	 * Métodos para pegar a senha do usuario a partir do email
+	 * @param email
+	 * @return
+	 */
+	private List<String> listaSenha(String email) {
+		TypedQuery<String> query = entityManager.createQuery("select senha from Usuario where email = '" 
+							+ email.toString() + "'"  , String.class);
+	    return query.getResultList();
+	}
+	
+	/**
 	 * Método responsavel por verificar se o email do usuario já existe dentro do banco de dados
 	 * 
 	 * @param usuario
@@ -119,5 +130,23 @@ public class UsuarioService {
 		Boolean exist = email.isEmpty() ? true : false;
 
 		return exist;
+	}
+
+	/**
+	 * Método de verificação de senha e email para logar 
+	 * 
+	 * @param prestaServico
+	 * @return
+	 */
+	public Boolean loginUsuario(String email, String senha) {
+		
+		String senhaCriptografada = listaSenha(email).get(0);
+		
+		Boolean senhaVerificada = senhaUtils.senhaValida(senha, senhaCriptografada);
+		
+		if(senhaVerificada.equals(true)) 
+			return true;
+	
+		return false;
 	}
 }
