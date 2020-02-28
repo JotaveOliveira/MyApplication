@@ -1,4 +1,4 @@
-package br.com.IHelp.doamin.Types;
+package br.com.IHelp.Types;
 
 import static org.junit.Assert.assertEquals;
 

@@ -142,8 +142,7 @@ public class PrestaServicoService {
 	 */
 	public Boolean loginPrestador(String email , String senha) {
 		
-		String senhaCriptografada = listaSenha(email).get(0);
-		
+		String senhaCriptografada = listaSenha(email).get(0);		
 		Boolean senhaVerificada = senhaUtils.senhaValida(senha, senhaCriptografada);
 	
 		if(senhaVerificada.equals(true)) 
