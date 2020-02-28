@@ -95,8 +95,8 @@ public class UsuarioService {
 	 * @return
 	 */
 	private List<String> listaSenha(String email) {
-		TypedQuery<String> query = entityManager.createQuery("select senha from Usuario where email = '" 
-							+ email.toString() + "'"  , String.class);
+		TypedQuery<String> query = entityManager.createQuery("select senha from Usuario where email = :email"  , String.class);
+		query.setParameter("email", email);
 	    return query.getResultList();
 	}
 	
