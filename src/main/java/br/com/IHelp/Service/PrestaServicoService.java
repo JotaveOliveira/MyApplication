@@ -17,9 +17,11 @@ import br.com.IHelp.Types.Estados;
 import br.com.IHelp.Utils.SenhaUtils;
 
 /**
- * 
+ * Classe responsável por conter a regra de negócio
+ * relacionada ao prestador de serviço s
+ *
  * @author jvitoroliveira
- * @data 15/01/2020
+ * @since s15/01/2020
  */
 @Service
 public class PrestaServicoService {
