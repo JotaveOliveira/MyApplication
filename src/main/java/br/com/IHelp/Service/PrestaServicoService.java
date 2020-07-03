@@ -56,21 +56,21 @@ public class PrestaServicoService {
 	
 	public PrestaServico inserirUsuario(PrestaServico prestaServico) throws Exception {
 		
-		Boolean estado = Estados.servicoDisponivel(prestaServico.getEstado().toString());
-		String estadoDoServico = EstadoServico.disponibilidadeDoServico(estado);
-		Boolean verificaEmail = verificaSeExisteEmail(prestaServico);
-		Boolean verificaCnpj = verificaSeExisteCnpj(prestaServico);
+//		Boolean estado = Estados.servicoDisponivel(prestaServico.getEstado().toString());
+//		String estadoDoServico = EstadoServico.disponibilidadeDoServico(estado);
+//		Boolean verificaEmail = verificaSeExisteEmail(prestaServico);
+//		Boolean verificaCnpj = verificaSeExisteCnpj(prestaServico);
 		prestaServico.setSenha(senhaUtils.gerarBCrypt(prestaServico.getSenha()));
 		
-		if(estadoDoServico.equals(DISPONIVEL)) {
-			if(verificaCnpj.equals(true)&& verificaEmail.equals(true)) 
+//		if(estadoDoServico.equals(DISPONIVEL)) {
+//			if(verificaCnpj.equals(true)&& verificaEmail.equals(true))
 				return prestaServicoRepository.save(prestaServico);
-			else{
-				throw new Exception("Dado já existente");
-			}
-		}else {
-			throw new Exception("Serviço Indisponivel nesse estado!");
-		}
+//			else{
+//				throw new Exception("Dado já existente");
+//			}
+//		}else {
+//			throw new Exception("Serviço Indisponivel nesse estado!");
+//		}
 	}
 	
 	/**
@@ -139,7 +139,7 @@ public class PrestaServicoService {
 	/**
 	 * Método de verificação de senha e email para logar 
 	 * 
-	 * @param prestaServico
+	 * @param
 	 * @return
 	 */
 	public Boolean loginPrestador(String email , String senha) {

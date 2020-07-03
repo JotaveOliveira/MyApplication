@@ -52,21 +52,21 @@ public class UsuarioService {
 	 */
 	public Usuario inserirUsuario(Usuario usuario) throws Exception {
 		
-		Boolean estado = Estados.servicoDisponivel(usuario.getEstado());
-		String estadoDoServico = EstadoServico.disponibilidadeDoServico(estado);
-		Boolean verificaEmail = verificaSeExisteEmail(usuario);
-		Boolean verificaCpf = verificaSeExisteCpf(usuario);
+//		Boolean estado = Estados.servicoDisponivel(usuario.getEstado());
+//		String estadoDoServico = EstadoServico.disponibilidadeDoServico(estado);
+//		Boolean verificaEmail = verificaSeExisteEmail(usuario);
+//		Boolean verificaCpf = verificaSeExisteCpf(usuario);
 		usuario.setSenha(senhaUtils.gerarBCrypt(usuario.getSenha()));
 		
-		if(estadoDoServico.equals(DISPONIVEL)) {
-			if(verificaCpf.equals(true)&& verificaEmail.equals(true)) {
+//		if(estadoDoServico.equals(DISPONIVEL)) {
+//			if(verificaCpf.equals(true)&& verificaEmail.equals(true)) {
 				return usuarioRepository.save(usuario);
-			}else{
-				throw new Exception("Dado já existente");
-			}
-		}else {
-			throw new Exception("Serviço Indisponivel nesse estado!");
-		}
+//			}else{
+//				throw new Exception("Dado já existente");
+//			}
+//		}else {
+//			throw new Exception("Serviço Indisponivel nesse estado!");
+//		}
 	}
 	
 	/**

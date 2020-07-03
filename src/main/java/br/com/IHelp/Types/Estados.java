@@ -10,10 +10,8 @@ import lombok.Getter;
 /**
  * 
  * @author jvitoroliveira
- * @data 23/01/2020
+ * @since 23/01/2020
  */
-@Getter
-@AllArgsConstructor(access=AccessLevel.PRIVATE)
 public enum Estados {
 	
 	SÃO_PAULO("SÃO PAULO", Arrays.asList(1));
@@ -25,7 +23,6 @@ public enum Estados {
 	 * Constutor privado responsável por
 	 * evitar a instanciação
 	 * e popular os atributos
-	 *
 	 * @param estado
 	 * @param idEstado
 	 */
