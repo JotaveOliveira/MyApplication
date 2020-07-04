@@ -1,4 +1,4 @@
-package br.com.IHelp.Utils;
+package br.com.IHelp.utils;
 
 import java.util.Properties;
 

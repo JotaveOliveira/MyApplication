@@ -1,4 +1,4 @@
-package br.com.IHelp.Resource;
+package br.com.IHelp.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -12,16 +12,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.IHelp.Entities.PrestaServico;
-import br.com.IHelp.Service.PrestaServicoService;
+import br.com.IHelp.model.PrestaServico;
+import br.com.IHelp.service.PrestaServicoService;
 
 /**
+ * Classe responsável por conter 
+ * o ponto de entrada relacionado
+ * a um prestador de servico
  * 
- * @author jvitoroliveira
+ * @author João Vitor 
  * @data 15/01/2020
  */
 @RestController
-public class PrestaServicoResource {
+public class PrestadorSerivicoController {
 	
 	@Autowired
 	private PrestaServicoService prestaServicoService;

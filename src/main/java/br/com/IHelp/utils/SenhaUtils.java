@@ -1,4 +1,4 @@
-package br.com.IHelp.Utils;
+package br.com.IHelp.utils;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

@@ -1,4 +1,4 @@
-package br.com.IHelp.Resource;
+package br.com.IHelp.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -12,16 +12,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.IHelp.Entities.Usuario;
-import br.com.IHelp.Service.UsuarioService;
+import br.com.IHelp.model.Usuario;
+import br.com.IHelp.service.UsuarioService;
 
 /**
+ * Classe responsável por conter 
+ * o ponto de entrada relacionado
+ * a um usuario
  * 
- * @author jvitoroliveira
+ * @author João Vitor 
  * @data 26/02/2020
  */
 @RestController
-public class UsuarioResource {
+public class UsuarioController {
 
 	@Autowired
 	private UsuarioService usuarioService;

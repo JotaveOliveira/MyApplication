@@ -1,9 +1,10 @@
-package br.com.IHelp.Resource;
+package br.com.IHelp.controller;
 
-import br.com.IHelp.Entities.PrestaServico;
-import br.com.IHelp.Service.PrestaServicoService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +15,23 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import br.com.IHelp.controller.PrestadorSerivicoController;
+import br.com.IHelp.model.PrestaServico;
+import br.com.IHelp.service.PrestaServicoService;
+
+/**
+ * Classe responsável por
+ * conter os testes relacionado 
+ * a classe PrestadorSerivicoController
+ * 
+ * @author João Vitor
+ * @since 04/07/2020
+ */
 @RunWith(SpringRunner.class)
-@WebMvcTest(controllers = PrestaServicoResource.class)
-public class PrestaServicoResourceTest {
+@WebMvcTest(controllers = PrestadorSerivicoController.class)
+public class PrestadorSerivicoControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -32,8 +42,16 @@ public class PrestaServicoResourceTest {
     @MockBean
     private PrestaServicoService prestaServicoService;
 
+    /**
+     * Método responsável por
+     * testar se a requisição 
+     * de uma controller está 
+     * funcionando corretamente
+     * 
+     * @throws Exception
+     */
     @Test
-    public void inserirPrestador() throws Exception {
+    public void testInserirPrestadorSucesso() throws Exception {
 
         PrestaServico prestaServico = new PrestaServico();
         prestaServico.setCep("03728220");

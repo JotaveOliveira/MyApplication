@@ -1,11 +1,7 @@
-package br.com.IHelp.Types;
+package br.com.IHelp.enumerator;
 
 import java.util.Arrays;
 import java.util.List;
-
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 /**
  * 

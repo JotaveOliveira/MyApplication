@@ -1,16 +1,13 @@
-package br.com.IHelp.Types;
+package br.com.IHelp.enumerator;
 
 import java.util.Arrays;
 import java.util.List;
-
-import lombok.Getter;
 
 /**
  * 
  * @author jvitoroliveira
  * @data 23/01/2020
  */
-@Getter
 public enum EstadoServico {
 	DISPONIVEL,
 	INDISPONIVEL,
@@ -18,6 +15,10 @@ public enum EstadoServico {
 	EM_ANDAMENTO,
 	ENCERRADO;
 	
+	public static List<EstadoServico> getEstadoServico() {
+		return estadoServico;
+	}
+
 	private static List<EstadoServico> estadoServico = Arrays.asList(EstadoServico.values());
 	
 	/**

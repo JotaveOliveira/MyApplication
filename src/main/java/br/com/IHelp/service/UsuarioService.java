@@ -1,4 +1,4 @@
-package br.com.IHelp.Service;
+package br.com.IHelp.service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,11 +10,9 @@ import javax.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.IHelp.Entities.Usuario;
-import br.com.IHelp.Repository.UsuarioRepository;
-import br.com.IHelp.Types.EstadoServico;
-import br.com.IHelp.Types.Estados;
-import br.com.IHelp.Utils.SenhaUtils;
+import br.com.IHelp.model.Usuario;
+import br.com.IHelp.repository.UsuarioRepository;
+import br.com.IHelp.utils.SenhaUtils;
 
 /**
  * 
